@@ -212,6 +212,11 @@ impl StructBuilder {
         self.field_builders[i].as_any_mut().downcast_mut::<T>()
     }
 
+    /// Returns a mutable reference to the child field builder at index `i`.
+    pub fn raw_field_builder(&mut self, i: usize) -> Option<&mut Box<dyn ArrayBuilder>> {
+        self.field_builders.get_mut(i)
+    }
+
     /// Returns the number of fields for the struct this builder is building.
     pub fn num_fields(&self) -> usize {
         self.field_builders.len()
